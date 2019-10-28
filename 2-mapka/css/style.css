@@ -41,7 +41,7 @@ body {
     cursor: pointer;
     border-radius: 2px;
     border: 1px solid #aaa;
-    background: url(select-arrow.svg) calc(100% - 10px) center / 20px 20px no-repeat;
+    background: url(../images/select-arrow.svg) calc(100% - 10px) center / 20px 20px no-repeat;
 }
 
 .country-sidebar {
