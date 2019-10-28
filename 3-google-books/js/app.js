@@ -1,20 +1,51 @@
-/*------------------------------------------
-1)
-Na stronie masz prosty formularz
-Po jego wysłaniu zrób zapytanie na adres
+const form = document.querySelector("form");
+const apiUrl = 'https://www.googleapis.com/books/v1/volumes';
+const input = form.querySelector("input");
 
-https://www.googleapis.com/books/v1/volumes?q=TITLE
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    if (input.value !== "") {
+        fetch(apiUrl + `?q=${input.value}`)
+            .then(res => res.json())
+            .then(res => {
+                //debugger;
+                for (const el of res.items) {
+                    console.log(el.volumeInfo.title)
+                }
+                input.value = "";
+            })
+    }
+})
 
-gdzie TITLE to tytuł wpisany w formularz.
+//xmlhttprequest
+// form.addEventListener("submit", function(e) {
+//     e.preventDefault();
+//     if (input.value !== "") {
+//         const xml = new XMLHttpRequest();
+//         xml.open("get", apiUrl + `?q=${input.value}`)
+//         xml.onload = function() {
+//             const res = JSON.parse(xml.responseText);
+//             debugger;
+//             for (const el of res.items) {
+//                 console.log(el.volumeInfo.title)
+//             }
+//             input.value = "";
+//         }
+//         xml.send(null);
+//     }
+// })
 
-W odpowiedzi wypisz w konsoli tylko tytuły książek.
-
-2)
-Dodatkowe: zadanie spróbuj wykonać korzystając z:
-XMLHttpRequest
-Fetch
-axios
-jquery ajax
-linki do axios i jquery wstaw korzystając z serwerów cdn
-------------------------------------------
-*/
+//axios
+// form.addEventListener("submit", function(e) {
+//     e.preventDefault();
+//     if (input.value !== "") {
+//         axios.get(apiUrl + `?q=${input.value}`)
+//             .then(res => {
+//                 //debugger;
+//                 for (const el of res.data.items) {
+//                     console.log(el.volumeInfo.title)
+//                 }
+//                 input.value = "";
+//             })
+//     }
+// })
